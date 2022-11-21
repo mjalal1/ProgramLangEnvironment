@@ -43,7 +43,7 @@ namespace ProgramLangEnvironment
             this.commandLine.Size = new System.Drawing.Size(339, 22);
             this.commandLine.TabIndex = 0;
             this.commandLine.Text = "";
-            this.commandLine.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.commandLine_KeyPress);
+            this.commandLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.commandLine_KeyDown);
             // 
             // programWindow
             // 
