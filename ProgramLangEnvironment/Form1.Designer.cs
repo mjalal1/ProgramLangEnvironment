@@ -29,7 +29,7 @@ namespace ProgramLangEnvironment
         /// </summary>
         private void InitializeComponent()
         {
-            this.commandLine = new System.Windows.Forms.RichTextBox();
+            this.commandLine = new System.Windows.Forms.TextBox();
             this.programWindow = new System.Windows.Forms.RichTextBox();
             this.outputWindow = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.outputWindow)).BeginInit();
@@ -84,7 +84,7 @@ namespace ProgramLangEnvironment
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox commandLine;
+        private System.Windows.Forms.TextBox commandLine;
         private System.Windows.Forms.RichTextBox programWindow;
         private System.Windows.Forms.PictureBox outputWindow;
     }

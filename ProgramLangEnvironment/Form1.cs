@@ -33,18 +33,57 @@ namespace ProgramLangEnvironment
             g.DrawImageUnscaled(OutBmp, 0, 0);
         }
 
-        private void commandLine_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
+      
+            public void ParseCommand(String line)
             {
-                String Command = commandLine.Text.Trim().ToLower();
-                if (Command.Equals("line"))
-                    {
-                    Canvas.DrawLine(10, 40);
+               
+                line = line.Trim().ToLower();  //trim excess and bring everything into same case
+               string[] com = line.Split(' ');   //Split into command and parameters
+                string command = com[0]; //Assign command to a variable
+                string Params = com[1]; // Assign chunk of whole parameter to a string to further split
+                string[] ParamL = Params.Split(','); //Split whole parameter string into array of parameter strings
+                List<int> Param = new List<int>(); // Create list of integers to store parameters after conversion
+
+                foreach (string i in ParamL) // Iterate through each parameter in string form and convert to int
+                {
+                    int a; // Variable to hold integer output
+                    int.TryParse(i, out a); // TryParse the string as int - surround with try catch
+                    Param.Add(a); //Add int to list of parameters
+                }
+
+
+            if (command.Equals("drawto"))
+            {
+                if (Param.Count() == 2)
+                {
+
+
+                    Canvas.DrawTo(Param[0], Param[1]);
+                    MessageBox.Show("Params are " + Param[0] + Param[1]);
                     Console.WriteLine("Line drew");
+
+
+                else if (command.Equals("rect"))
+                    {
+                        Canvas.DrawRect(100, 100);
+                        Console.WriteLine("Square drew");
+                    }
                 }
             }
-            Refresh();
+
+            }
+        
+
+
+        public void commandLine_KeyDown(object sender, KeyEventArgs e)
+        {
+        
+            if (e.KeyCode == Keys.Enter)
+            {
+                ParseCommand(commandLine.Text);
+   Refresh();
+            }
+         
         }
     }
 }
