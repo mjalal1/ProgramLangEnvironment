@@ -16,5 +16,15 @@ namespace ProgramLangEnvironment
         {
             InitializeComponent();
         }
+
+        private void commandLine_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void outputWindow_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
