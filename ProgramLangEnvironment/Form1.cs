@@ -63,14 +63,23 @@ namespace ProgramLangEnvironment
                     Console.WriteLine("Line drew");
 
 
-                else if (command.Equals("rect"))
-                    {
-                        Canvas.DrawRect(100, 100);
-                        Console.WriteLine("Square drew");
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Parameters : drawTo takes 2 parameters : x and y");
                 }
             }
 
+                else if (command.Equals("rect"))
+                    {
+                        Canvas.DrawRect(Param[0], Param[1]);
+                        Console.WriteLine("Square drew");
+                    }
+            else if (command.Equals("circle"))
+            {
+                Canvas.DrawCircle(Param[0]);
+
+            }
             }
         
 
