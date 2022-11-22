@@ -8,5 +8,11 @@ namespace ProgramLangEnvironment
 {
     class Parser
         {
+        public string ParseCommand()
+        {
+            string command="b";
+
+            return command;
+        }
     }
 }

@@ -73,6 +73,41 @@ namespace ProgramLangEnvironment
 
         }
 
+        public void pen(string colour)
+        {
+
+            switch (colour)
+            {
+                case "red":
+                    Pen.Color= Color.Red;
+                    brush = Brushes.Red;
+                   
+                    break;
+                case "blue":
+                    Pen.Color = Color.Blue;
+                  brush = Brushes.Blue;   
+                    break;
+                case "green":
+                    Pen.Color = Color.Green;
+                    brush = Brushes.Green;
+                    break;
+                case "Pink":
+                    Pen.Color = Color.Pink;
+                    brush = Brushes.Pink;
+                    break;
+                case "purple":
+                    Pen.Color = Color.Purple;
+                    brush = Brushes.Purple;
+                    break;
+                case "black":
+                    Pen.Color = Color.Black;
+                    brush = Brushes.Black;
+                    break;
+            }
+
+
+        }
+
 
         public void DrawRect(int length,int height)
         {

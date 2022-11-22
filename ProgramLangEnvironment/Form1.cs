@@ -149,7 +149,17 @@ namespace ProgramLangEnvironment
             }
             else if (command.Equals("pen"))
             {
-                Canvas.reset();
+                if (com.Length > 1)
+                {
+                  
+                        Canvas.pen(com[1]);
+                        Console.WriteLine(com[1]);
+                 
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Parameters : pen takes 1 parameter: colour (red/blue/green/pink/purple/black) ");
+                }
             }
            else  if (command.Equals("fill"))
             {
@@ -158,11 +168,16 @@ namespace ProgramLangEnvironment
                     if (com[1] == "on" || com[1] == "off")
                     {
                         Canvas.fill(com[1]);
+                        Console.WriteLine(com[1]);
                     }
                     else
                     {
                         MessageBox.Show("Invalid Parameters : fill takes 1 parameter: on/off ");
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Parameters : fill takes 1 parameter: on/off ");
                 }
             }
 
