@@ -59,8 +59,8 @@ namespace ProgramLangEnvironment
 
 
                     Canvas.DrawTo(Param[0], Param[1]);
-                    MessageBox.Show("Params are " + Param[0] + Param[1]);
-                    Console.WriteLine("Line drew");
+                //    MessageBox.Show("Params are " + Param[0] + Param[1]);
+                
 
 
                 }
@@ -70,10 +70,30 @@ namespace ProgramLangEnvironment
                 }
             }
 
+
+
+            if (command.Equals("moveto"))
+            {
+                if (Param.Count() == 2)
+                {
+
+
+                    Canvas.MoveTo(Param[0], Param[1]);
+                  
+                   
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Parameters : moveTo takes 2 parameters : x and y");
+                }
+            }
+
             else if (command.Equals("rect"))
             {
                 Canvas.DrawRect(Param[0], Param[1]);
-                Console.WriteLine("Square drew");
+            
             }
             else if (command.Equals("circle"))
             {
@@ -90,7 +110,7 @@ namespace ProgramLangEnvironment
                 }
                 else
                 {
-                    MessageBox.Show("Invalid Parameters : drawTriangle takes 6 parameters : x1,y1,x2,y2,x3,y3");
+                    MessageBox.Show("Invalid Parameters : Triangle takes 6 parameters : x1 and y1, x2 and y2, x3 and y3");
                 }
             }
         

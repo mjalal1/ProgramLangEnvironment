@@ -28,6 +28,14 @@ namespace ProgramLangEnvironment
             posy = y;
 
         }
+
+        public void MoveTo(int x, int y)
+        {
+           
+            posx = x;
+            posy = y;
+
+        }
         public void DrawRect(int length,int height)
         {
             g.DrawRectangle(Pen, posx, posy, posx+length, posy+height);
