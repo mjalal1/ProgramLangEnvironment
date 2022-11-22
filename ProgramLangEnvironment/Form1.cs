@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ProgramLangEnvironment
 {
@@ -33,6 +34,11 @@ namespace ProgramLangEnvironment
         {
             Graphics g = e.Graphics;
             g.DrawImageUnscaled(OutBmp, 0, 0);
+        }
+
+        public void Save(String path)
+        {
+            File.WriteAllText(path + ".txt", programWindow.Text);
         }
 
 
@@ -153,6 +159,17 @@ namespace ProgramLangEnvironment
                 else if (command.Equals("reset"))
                 {
                     Canvas.reset();
+                }
+                else if (command.Equals("save"))
+                {
+                    if (com.Length > 1)
+                    {
+                        Save(com[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Parameters : Save takes 1 parameter: filename");
+                    }
                 }
                 else if (command.Equals("pen"))
                 {
