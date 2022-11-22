@@ -41,6 +41,13 @@ namespace ProgramLangEnvironment
             File.WriteAllText(path + ".txt", programWindow.Text);
         }
 
+        public void Load(String path)
+        {
+            string FileText= File.ReadAllText(path+".txt");
+            programWindow.Text = FileText;
+
+        }
+
 
         public void ParseCommand(String line)
         {
@@ -169,6 +176,18 @@ namespace ProgramLangEnvironment
                     else
                     {
                         MessageBox.Show("Invalid Parameters : Save takes 1 parameter: filename");
+                    }
+                }
+
+                else if (command.Equals("load"))
+                {
+                    if (com.Length > 1)
+                    {
+                        Load(com[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Parameters : Load takes 1 parameter: filename");
                     }
                 }
                 else if (command.Equals("pen"))
