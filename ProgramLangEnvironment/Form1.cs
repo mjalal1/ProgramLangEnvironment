@@ -27,20 +27,29 @@ namespace ProgramLangEnvironment
 
         private void commandLine_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            // wrong event called . breaks everything when removed. dont remove
         }
-
+         
+        ///Updates the bmp when paint event occurs
         private void outputWindow_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             g.DrawImageUnscaled(OutBmp, 0, 0);
         }
 
+        /// <summary>
+        /// Saves the program currently in the programWindow to a text file of given name
+        /// </summary>
+        /// <param name="path">Name to be given to the file</param>
         public void Save(String path)
         {
             File.WriteAllText(path + ".txt", programWindow.Text);
         }
 
+        /// <summary>
+        /// Loads a program from a file (located in source/repos/) and stores it in the programWindow
+        /// </summary>
+        /// <param name="path">Name of the file to load from</param>
         public void LoadFile(String path)
         {
             string FileText= File.ReadAllText(path+".txt");
@@ -48,13 +57,17 @@ namespace ProgramLangEnvironment
 
         }
 
-
+         /// <summary>
+         /// This function parses the string given to it, splits it into command and parameters, and decides which function to call.
+         /// Exceptions are mostly thrown here, should be refactored to a seperate class
+         /// </summary>
+         /// <param name="line"> The command and parameters passed by the user </param>
         public void ParseCommand(String line)
         {
 
             line = line.Trim().ToLower();  //trim excess and bring everything into same case 
-            string[] comLine = line.Split('\n');
-            for (int x = 0; x < comLine.Length; x++)
+            string[] comLine = line.Split('\n'); //Splits on new line, splits program into different lines
+            for (int x = 0; x < comLine.Length; x++) // Iterate on every line of code stored
             {
 
 
@@ -65,7 +78,7 @@ namespace ProgramLangEnvironment
                                                  
 
 
-                if (com.Length > 1)
+                if (com.Length > 1) // if there are parameters
                 {
                     string[] Params = com[1].Split(','); //Split whole parameter into array of parameter strings
 
@@ -91,9 +104,9 @@ namespace ProgramLangEnvironment
 
                 if (command.Equals("drawto"))
                 {
-                    if (Param.Count() == 2)
+                    if (Param.Count() == 2) // Checks it has expected number of params
                     {
-                        if (Param[0] == 0)
+                        if (Param[0] == 0) // if the value stored is 0, the parameter given was not a valid parameter as it didnt reach this array.
                         {
                             throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters :(int) x and y");
                         }
@@ -186,7 +199,7 @@ namespace ProgramLangEnvironment
                 {
                     if (com.Length > 1)
                     {
-                        Save(com[1]);
+                        Save(com[1]); // Parameters are string so com[] is used instead as parameters are still in string form here
                     }
                     else
                     {
@@ -223,7 +236,7 @@ namespace ProgramLangEnvironment
                 {
                     if (com.Length > 1)
                     {
-                        if (com[1] == "on" || com[1] == "off")
+                        if (com[1] == "on" || com[1] == "off") // Hard coded as it seemed like simplest option
                         {
                             Canvas.fill(com[1]);
                             Console.WriteLine(com[1]);
@@ -241,11 +254,11 @@ namespace ProgramLangEnvironment
 
                 else if (command.Equals("run"))
                 {
-                    ParseCommand(programWindow.Text);
+                    ParseCommand(programWindow.Text); // To run pW code, parseCommand is called recursively on the pw.Text
                 }
 
 
-                else
+                else // If this is reached, the command given was not any of the accepted commands
                 {
                     throw new ApplicationException("Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
                   
@@ -269,7 +282,7 @@ namespace ProgramLangEnvironment
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(""+ex.Message);
+                    MessageBox.Show(""+ex.Message); // Exception is shown to user here. 
                 }
                 Refresh();
             }

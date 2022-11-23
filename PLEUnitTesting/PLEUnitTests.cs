@@ -6,9 +6,17 @@ using System.Drawing;
 namespace PLEUnitTesting
 {
     [TestClass]
+    
     public class PLEUnitTests
-    {
+    { 
+        /// <summary>
+        /// Tests for the PLE. Currently test the moveTo command, the parseCommand() function.
+        /// </summary>
+
         [TestMethod]
+        /// <summary>
+        /// Test method to test if moveTo executes with valid parameters. Checks that x position and y position are the expected values
+        /// </summary>
         public void TestMoveToValid()
         {
             Form1 forma = new Form1();
@@ -18,8 +26,11 @@ namespace PLEUnitTesting
 
         }
 
-
+     
         [TestMethod]
+           /// <summary>
+        /// Tests moveTo command with invalid parameters. Checks for an expected exception, Application Ex.
+        /// </summary>
         public void TestMoveToInvalid()
         {
             Form1 forma = new Form1();
@@ -27,7 +38,9 @@ namespace PLEUnitTesting
 
 
         }
-
+        /// <summary>
+        /// Tests the parseCommand() when given an invalid command. Checks for ApplicationException thrown
+        /// </summary>
         [TestMethod]
         public void TestInvalidCommand()
         {
@@ -36,6 +49,10 @@ namespace PLEUnitTesting
             Assert.ThrowsException<ApplicationException>(() => forma.ParseCommand(a));
         }
 
+
+        /// <summary>
+        /// Tests the parseCommand() when given an invalid parameter. Checks for ApplicationException thrown
+        /// </summary>
         [TestMethod]
         public void TestInvalidParameters()
         {
@@ -43,7 +60,13 @@ namespace PLEUnitTesting
             string a = "circle bogey";
             Assert.ThrowsException<ApplicationException>(() => forma.ParseCommand(a));
         }
+
+
         [TestMethod]
+
+        /// <summary>
+        /// Tests the parseCommand() when given an invalid string. Checks for ApplicationException thrown
+        /// </summary>
         public void TestParseCommand()
         {
             Form1 forma = new Form1();
