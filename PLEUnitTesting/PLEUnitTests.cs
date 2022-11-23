@@ -73,5 +73,32 @@ namespace PLEUnitTesting
             string a = "Giggs better pop up in ur thoughts as an artist\nJheeze Holl3rin at man";
             Assert.ThrowsException<ApplicationException>(() => forma.ParseCommand(a));
         }
+
+        // [PART 2 TESTS]
+        public void TestFactory()
+        {
+            Form1 forma = new Form1();
+            Factory f = new Factory;
+            Object o = (Object)f.MakeCommand("invaleed");
+            Assert.ThrowsException<ApplicationException>(() => f.MakeCommand(o.ToString()));
+        }
+
+        public void TestParserClass()
+        {
+            Form1 forma = new Form1();
+            Parser p = new Parser;
+            string a = "circle bogey";
+            Assert.ThrowsException<ApplicationException>(() => p.ParseCommand(a));
+        }
+
+        public void TestWhile()
+        {
+            Form1 forma = new Form1();
+            Parser p = new Parser;
+            string a = "while x>10\ncircle x\nx=x+1\nendwhile";
+            Assert.ThrowsException<ApplicationException>(() => p.ParseCommand(a));
+        }
+
+
     }
 }
