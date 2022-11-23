@@ -20,10 +20,6 @@ namespace ProgramLangEnvironment
             this.g = g;
             posx = posy = 0; ;
             Pen = new Pen(Color.Black, 1);
-           
-           
-       
-
         }
          
 
@@ -119,7 +115,7 @@ namespace ProgramLangEnvironment
                     Pen.Color = Color.Green;
                     brush = Brushes.Green;
                     break;
-                case "Pink":
+                case "pink":
                     Pen.Color = Color.Pink;
                     brush = Brushes.Pink;
                     break;
@@ -150,7 +146,7 @@ namespace ProgramLangEnvironment
           
                 g.DrawRectangle(Pen, rect);
             if (fillo) { g.FillRectangle(brush, rect); }
-            Console.WriteLine(fillo);
+          //  Console.WriteLine(fillo);
         }
 
         /// <summary>
@@ -190,6 +186,7 @@ namespace ProgramLangEnvironment
             pnt[2].Y = y3;
 
             g.DrawPolygon(Pen, pnt);
+            if (fillo) { g.FillPolygon(brush, pnt); }
         }
     }
 }

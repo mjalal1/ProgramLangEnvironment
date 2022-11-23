@@ -52,8 +52,8 @@ namespace ProgramLangEnvironment
         /// <param name="path">Name of the file to load from</param>
         public void LoadFile(String path)
         {
-            string FileText= File.ReadAllText(path+".txt");
-            programWindow.Text = FileText;
+            
+            programWindow.Text = File.ReadAllText(path+".txt");
 
         }
 
@@ -92,7 +92,7 @@ namespace ProgramLangEnvironment
                         }
                         catch (Exception ex)
                         {
-                            throw new ApplicationException("Invalid Parameters : drawTo takes 2 parameters : x and y");
+                            throw new ApplicationException("Invalid Parameters ");
                         }
 
                          
@@ -108,11 +108,11 @@ namespace ProgramLangEnvironment
                     {
                         if (Param[0] == 0) // if the value stored is 0, the parameter given was not a valid parameter as it didnt reach this array.
                         {
-                            throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters :(int) x and y");
+                            throw new ApplicationException("Invalid Parameters : drawTo takes 2 parameters :(int) x and y");
                         }
 
                         Canvas.DrawTo(Param[0], Param[1]);
-                        //    throw new ApplicationException("Params are " + Param[0] + Param[1]);
+                     
 
 
 
@@ -125,7 +125,7 @@ namespace ProgramLangEnvironment
 
 
 
-                if (command.Equals("moveto"))
+               else if (command.Equals("moveto"))
                 {
                     if (Param.Count() == 2)
                     {
@@ -148,13 +148,13 @@ namespace ProgramLangEnvironment
                     {
                         if (Param[0] == 0)
                         {
-                            throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters :(int) x and y");
+                            throw new ApplicationException("Invalid Parameters : rect takes 2 parameters :(int) x and y");
                         }
                         Canvas.DrawRect(Param[0], Param[1]);
                     }
                     else
                     {
-                        throw new ApplicationException("Invalid Parameters : Rect takes 2 parameters : length and height");
+                        throw new ApplicationException("Invalid Parameters : rect takes 2 parameters : length and height");
                     }
 
                 }
@@ -164,7 +164,7 @@ namespace ProgramLangEnvironment
                     {
                         if (Param[0] == 0)
                         {
-                            throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters :(int) x and y");
+                            throw new ApplicationException("Invalid Parameters : Circle takes 1 parameter: radius");
                         }
                         Canvas.DrawCircle(Param[0]);
                     }
