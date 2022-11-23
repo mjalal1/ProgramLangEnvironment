@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-    class CanvasO
+   public class CanvasO
     {
-        Graphics g;
+     public Graphics g;
         Pen Pen;
        Brush brush = Brushes.Black;
-        int posx;
-        int posy;
+     public   int posx;
+       public int posy;
      bool fillo=false;
         public CanvasO(Graphics g)
         {

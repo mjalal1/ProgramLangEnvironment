@@ -17,8 +17,8 @@ namespace ProgramLangEnvironment
         const int bmpx = 640;
         const int bmpy = 480;
 
-        Bitmap OutBmp = new Bitmap(bmpx, bmpy);
-        CanvasO Canvas;
+      public  Bitmap OutBmp = new Bitmap(bmpx, bmpy);
+      public  CanvasO Canvas;
         public Form1()
         {
             InitializeComponent();
@@ -41,7 +41,7 @@ namespace ProgramLangEnvironment
             File.WriteAllText(path + ".txt", programWindow.Text);
         }
 
-        public void Load(String path)
+        public void LoadFile(String path)
         {
             string FileText= File.ReadAllText(path+".txt");
             programWindow.Text = FileText;
@@ -92,14 +92,14 @@ namespace ProgramLangEnvironment
 
 
                         Canvas.DrawTo(Param[0], Param[1]);
-                        //    MessageBox.Show("Params are " + Param[0] + Param[1]);
+                        //    throw new ApplicationException("Params are " + Param[0] + Param[1]);
 
 
 
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : drawTo takes 2 parameters : x and y");
+                        throw new ApplicationException("Invalid Parameters : drawTo takes 2 parameters : x and y");
                     }
                 }
 
@@ -119,7 +119,7 @@ namespace ProgramLangEnvironment
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : moveTo takes 2 parameters : x and y");
+                        throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters : x and y");
                     }
                 }
 
@@ -131,7 +131,7 @@ namespace ProgramLangEnvironment
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : Rect takes 2 parameters : length and height");
+                        throw new ApplicationException("Invalid Parameters : Rect takes 2 parameters : length and height");
                     }
 
                 }
@@ -143,7 +143,7 @@ namespace ProgramLangEnvironment
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : Circle takes 1 parameter: radius");
+                        throw new ApplicationException("Invalid Parameters : Circle takes 1 parameter: radius");
                     }
                 }
                 else if (command.Equals("triangle"))
@@ -156,7 +156,7 @@ namespace ProgramLangEnvironment
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : Triangle takes 6 parameters : x1 and y1, x2 and y2, x3 and y3");
+                        throw new ApplicationException("Invalid Parameters : Triangle takes 6 parameters : x1 and y1, x2 and y2, x3 and y3");
                     }
                 }
                 else if (command.Equals("clear"))
@@ -175,7 +175,7 @@ namespace ProgramLangEnvironment
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : Save takes 1 parameter: filename");
+                        throw new ApplicationException("Invalid Parameters : Save takes 1 parameter: filename");
                     }
                 }
 
@@ -183,11 +183,11 @@ namespace ProgramLangEnvironment
                 {
                     if (com.Length > 1)
                     {
-                        Load(com[1]);
+                        LoadFile(com[1]);
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : Load takes 1 parameter: filename");
+                        throw new ApplicationException("Invalid Parameters : Load takes 1 parameter: filename");
                     }
                 }
                 else if (command.Equals("pen"))
@@ -201,7 +201,7 @@ namespace ProgramLangEnvironment
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : pen takes 1 parameter: colour (red/blue/green/pink/purple/black) ");
+                        throw new ApplicationException("Invalid Parameters : pen takes 1 parameter: colour (red/blue/green/pink/purple/black) ");
                     }
                 }
                 else if (command.Equals("fill"))
@@ -215,12 +215,12 @@ namespace ProgramLangEnvironment
                         }
                         else
                         {
-                            MessageBox.Show("Invalid Parameters : fill takes 1 parameter: on/off ");
+                            throw new ApplicationException("Invalid Parameters : fill takes 1 parameter: on/off ");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Invalid Parameters : fill takes 1 parameter: on/off ");
+                        throw new ApplicationException("Invalid Parameters : fill takes 1 parameter: on/off ");
                     }
                 }
 
@@ -232,7 +232,8 @@ namespace ProgramLangEnvironment
 
                 else
                 {
-                    MessageBox.Show("Command not recognised. Valid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
+                    throw new ApplicationException("Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
+                  
                 }
 
             }
@@ -247,7 +248,14 @@ namespace ProgramLangEnvironment
 
             if (e.KeyCode == Keys.Enter)
             {
-                ParseCommand(commandLine.Text);
+                try
+                {
+                    ParseCommand(commandLine.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(""+ex.Message);
+                }
                 Refresh();
             }
 
