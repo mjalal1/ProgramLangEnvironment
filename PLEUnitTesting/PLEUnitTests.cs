@@ -12,8 +12,8 @@ namespace PLEUnitTesting
         public void TestMoveToValid()
         {
             Form1 forma = new Form1();
-              forma.ParseCommand("moveto 100,150");
-            Assert.AreEqual(100, forma.Canvas.posx,0.01);
+            forma.ParseCommand("moveto 100,150");
+            Assert.AreEqual(100, forma.Canvas.posx, 0.01);
             Assert.AreEqual(150, forma.Canvas.posy, 0.01);
 
         }
@@ -23,9 +23,8 @@ namespace PLEUnitTesting
         public void TestMoveToInvalid()
         {
             Form1 forma = new Form1();
-            forma.ParseCommand("moveto 100");
-            Assert.AreNotEqual(100, forma.Canvas.posx, 0.01);
-           
+            Assert.ThrowsException<ApplicationException>(() => forma.ParseCommand("moveto 100"));
+
 
         }
 
@@ -33,10 +32,23 @@ namespace PLEUnitTesting
         public void TestInvalidCommand()
         {
             Form1 forma = new Form1();
-            forma.ParseCommand("abcdef 100");
-            Assert.
+            string a = "abcdef 100";
+            Assert.ThrowsException<ApplicationException>(() => forma.ParseCommand(a));
+        }
 
-
+        [TestMethod]
+        public void TestInvalidParameters()
+        {
+            Form1 forma = new Form1();
+            string a = "circle bogey";
+            Assert.ThrowsException<ApplicationException>(() => forma.ParseCommand(a));
+        }
+        [TestMethod]
+        public void TestParseCommand()
+        {
+            Form1 forma = new Form1();
+            string a = "Giggs better pop up in ur thoughts as an artist\nJheeze Holl3rin at man";
+            Assert.ThrowsException<ApplicationException>(() => forma.ParseCommand(a));
         }
     }
 }

@@ -62,23 +62,27 @@ namespace ProgramLangEnvironment
                 string[] com = comLine[x].Split(' ');   //Split into command and parameters
                 string command = com[0]; //Assign command to a variable           
                 List<int> Param = new List<int>(); // Create list of integers to store parameters after conversion
-                                                   //  String[] Params = new string[];
+                                                 
 
 
                 if (com.Length > 1)
                 {
-                    string[] Params = com[1].Split(',');
-
-                    // Assign chunk of whole parameter to a string to further split
-                    //Split whole parameter string into array of parameter strings
-
+                    string[] Params = com[1].Split(','); //Split whole parameter into array of parameter strings
 
                     foreach (string i in Params) // Iterate through each parameter in string form and convert to int
                     {
                         int a; // Variable to hold integer output
+                        try
+                        {
+                            int.TryParse(i, out a);// TryParse the string as int - surround with try catch
+                            Param.Add(a);//Add int to list of parameters
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new ApplicationException("Invalid Parameters : drawTo takes 2 parameters : x and y");
+                        }
 
-                        int.TryParse(i, out a); // TryParse the string as int - surround with try catch
-                        Param.Add(a); //Add int to list of parameters
+                         
                     }
 
 
@@ -89,7 +93,10 @@ namespace ProgramLangEnvironment
                 {
                     if (Param.Count() == 2)
                     {
-
+                        if (Param[0] == 0)
+                        {
+                            throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters :(int) x and y");
+                        }
 
                         Canvas.DrawTo(Param[0], Param[1]);
                         //    throw new ApplicationException("Params are " + Param[0] + Param[1]);
@@ -109,13 +116,12 @@ namespace ProgramLangEnvironment
                 {
                     if (Param.Count() == 2)
                     {
-
-
+                        if (Param[0]==0)
+                        {
+                            throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters :(int) x and y");
+                        }
                         Canvas.MoveTo(Param[0], Param[1]);
-
                         Debug.WriteLine("x is " + Param[0] + ". y is " + Param[1]);
-
-
                     }
                     else
                     {
@@ -127,6 +133,10 @@ namespace ProgramLangEnvironment
                 {
                     if (Param.Count() == 2)
                     {
+                        if (Param[0] == 0)
+                        {
+                            throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters :(int) x and y");
+                        }
                         Canvas.DrawRect(Param[0], Param[1]);
                     }
                     else
@@ -139,6 +149,10 @@ namespace ProgramLangEnvironment
                 {
                     if (Param.Count() == 1)
                     {
+                        if (Param[0] == 0)
+                        {
+                            throw new ApplicationException("Invalid Parameters : moveTo takes 2 parameters :(int) x and y");
+                        }
                         Canvas.DrawCircle(Param[0]);
                     }
                     else
@@ -150,6 +164,7 @@ namespace ProgramLangEnvironment
                 {
                     if (Param.Count() == 6)
                     {
+
                         Canvas.DrawTriangle(Param[0], Param[1], Param[2], Param[3], Param[4], Param[5]);
 
 
