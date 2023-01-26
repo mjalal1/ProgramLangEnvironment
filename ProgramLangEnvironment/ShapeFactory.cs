@@ -15,7 +15,11 @@ namespace ProgramLangEnvironment
 
             if (shapeType=="circle")
             {
-                return new Circle;
+                return new Circle();
+            }
+            else
+            {
+                throw new ArgumentException("Error in factory: " + shapeType+" not valid");
             }
         }
 
