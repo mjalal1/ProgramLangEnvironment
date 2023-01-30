@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-  abstract class Shape : IShape
+  abstract class DrawingCommand : IShape
     {
        protected Color colour;
        protected int x,y;
+       protected int parameters;
 
-        public Shape()
+        public DrawingCommand()
         {
             this.colour = Color.Blue;
             this.x = 150;
@@ -20,24 +21,19 @@ namespace ProgramLangEnvironment
 
         }
 
-        public Shape(Color colour, int x, int y)
+        public DrawingCommand(Color colour, int x, int y)
         {
             this.colour = colour;
             this.x = x;
             this.y = y;
         }
 
-        public abstract void draw(Graphics graphic);
-        public abstract double calcArea();
-        public abstract double calcPerim();
+        public abstract void draw(CanvasO c);
 
-        public virtual void set(Color colour, params int[] list)
-        {
-            this.colour = colour;
-            this.x = list[0];
-            this.y = list[1];
 
-        }
+        public abstract void set(Color colour, params int[] list);
+        public abstract void set(params int[] list);
+    
 
 
     }

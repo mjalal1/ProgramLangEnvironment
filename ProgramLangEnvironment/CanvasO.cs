@@ -7,31 +7,31 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-   public class CanvasO
+    public class CanvasO
     {
-     public Graphics g;
+        public Graphics gfx;
         Pen Pen;
-       Brush brush = Brushes.Black;
-     public   int posx;
-       public int posy;
-     bool fillo=false;
+        Brush brush = Brushes.Black;
+        public int posx;
+        public int posy;
+       public bool fillo = false;
         public CanvasO(Graphics g)
         {
-            this.g = g;
+            this.gfx = g;
             posx = posy = 0; ;
             Pen = new Pen(Color.Black, 1);
         }
-         
+
 
         /// <summary>
         /// drawTo command draws a line from current position to given x and y
         /// </summary>
         /// <param name="x">X co ord of end location</param>
         /// <param name="y">Y co ord of end location</param>
-        public void DrawTo(int x,int y)
+        public void DrawTo(int x, int y)
         {
-           
-            g.DrawLine(Pen, posx, posy, x, y);
+
+            gfx.DrawLine(Pen, posx, posy, x, y);
             posx = x;
             posy = y;
 
@@ -45,7 +45,7 @@ namespace ProgramLangEnvironment
         /// <param name="y">New y location</param>
         public void MoveTo(int x, int y)
         {
-           
+
             posx = x;
             posy = y;
 
@@ -58,7 +58,7 @@ namespace ProgramLangEnvironment
         {
             posx = 0;
             posy = 0;
-         
+
 
         }
 
@@ -69,7 +69,7 @@ namespace ProgramLangEnvironment
         public void clear()
         {
 
-            g.Clear(Color.Transparent);
+            gfx.Clear(Color.Transparent);
 
         }
 
@@ -81,13 +81,13 @@ namespace ProgramLangEnvironment
         public void fill(string o)
         {
 
-            if (o=="on")
+            if (o == "on")
             {
                 fillo = true;
-               
+
             }
-           else if (o=="off")
-                { fillo = false; }
+            else if (o == "off")
+            { fillo = false; }
 
 
         }
@@ -103,13 +103,13 @@ namespace ProgramLangEnvironment
             switch (colour)
             {
                 case "red":
-                    Pen.Color= Color.Red;
+                    Pen.Color = Color.Red;
                     brush = Brushes.Red;
-                   
+
                     break;
                 case "blue":
                     Pen.Color = Color.Blue;
-                  brush = Brushes.Blue;   
+                    brush = Brushes.Blue;
                     break;
                 case "green":
                     Pen.Color = Color.Green;
@@ -137,16 +137,16 @@ namespace ProgramLangEnvironment
         /// </summary>
         /// <param name="length">Length of desired rectangle</param>
         /// <param name="height">Height of desired rectangle</param>
-        public void DrawRect(int length,int height)
+        public void DrawRect(int length, int height)
         {
-         
-          //  g.DrawRectangle(Pen, posx, posy, posx+length, posy+height);
-            Rectangle rect = new Rectangle(posx, posy, length,height);
-          
-          
-                g.DrawRectangle(Pen, rect);
-            if (fillo) { g.FillRectangle(brush, rect); }
-          //  Console.WriteLine(fillo);
+
+            //  g.DrawRectangle(Pen, posx, posy, posx+length, posy+height);
+            Rectangle rect = new Rectangle(posx, posy, length, height);
+
+
+            gfx.DrawRectangle(Pen, rect);
+            if (fillo) { gfx.FillRectangle(brush, rect); }
+            //  Console.WriteLine(fillo);
         }
 
         /// <summary>
@@ -155,10 +155,10 @@ namespace ProgramLangEnvironment
         /// <param name="radius">Radius of desired circle</param>
         public void DrawCircle(int radius)
         {
-           
+
             Rectangle recta = new Rectangle(posx - radius, posy - radius, radius * 2, radius * 2);
-            g.DrawEllipse(Pen, recta);
-            if (fillo) { g.FillEllipse(brush, recta); }
+            gfx.DrawEllipse(Pen, recta);
+            if (fillo) { gfx.FillEllipse(brush, recta); }
             //  g.DrawEllipse(Pen, posx, posy, (posx + (radius * 2)), (posy + (radius * 2)));
         }
 
@@ -172,7 +172,7 @@ namespace ProgramLangEnvironment
         /// <param name="y2">y position of point 2</param>
         /// <param name="x3">x position of point 3</param>
         /// <param name="y3">y position of point 3</param>
-        public void DrawTriangle(int x1,int y1,int x2, int y2,int x3, int y3) // x and y co ords of 3 points on triangle
+        public void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3) // x and y co ords of 3 points on triangle
         {
             Point[] pnt = new Point[3]; //x and y stored in Points array and used with DrawPolygon()
 
@@ -185,8 +185,13 @@ namespace ProgramLangEnvironment
             pnt[2].X = x3;
             pnt[2].Y = y3;
 
-            g.DrawPolygon(Pen, pnt);
-            if (fillo) { g.FillPolygon(brush, pnt); }
+            gfx.DrawPolygon(Pen, pnt);
+            if (fillo) { gfx.FillPolygon(brush, pnt); }
         }
+
+
+
+
+      
     }
 }

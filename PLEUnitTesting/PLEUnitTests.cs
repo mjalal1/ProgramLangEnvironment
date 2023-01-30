@@ -78,9 +78,9 @@ namespace PLEUnitTesting
         public void TestFactory()
         {
             Form1 forma = new Form1();
-            Factory f = new Factory;
-            Object o = (Object)f.MakeCommand("invaleed");
-            Assert.ThrowsException<ApplicationException>(() => f.MakeCommand(o.ToString()));
+            var sf = new ShapeFactory();
+            Object o = (Object)sf.MakeCommand("invalid");
+            Assert.ThrowsException<ApplicationException>(() => sf.MakeCommand(o.ToString()));
         }
 
         public void TestParserClass()

@@ -8,14 +8,14 @@ namespace ProgramLangEnvironment
 {
     class ShapeFactory
     {
-        public Shape GetShape(string shapeType)
+        public DrawingCommand GetCmd(string shapeType)
         {
             shapeType = shapeType.ToLower().Trim();
 
 
-            if (shapeType=="circle")
+            if (shapeType.Equals("circle"))
             {
-                return new Circle();
+                return new Circle(); // create classes for other commands
             }
             else
             {

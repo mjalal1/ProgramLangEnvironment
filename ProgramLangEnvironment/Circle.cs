@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 namespace ProgramLangEnvironment
 {
-    class Circle : Shape
+    class Circle : DrawingCommand
     {
         int radius;
-         
+      
         public Circle() : base()
-        {  }
+        { this.parameters = 1; }
 
         public Circle(Color colour, int x, int y, int radius) : base(colour,x,y)
         {
@@ -20,30 +20,26 @@ namespace ProgramLangEnvironment
 
         public override void set(Color colour, params int[] list)
         {
-            base.set(colour, list[0], list[1]);
-            this.radius = list[2];
+            this.colour = colour; 
+           this.radius = list[0];
         }
-        public override void draw(Graphics graphic)
+
+        public override void set( params int[] list) 
         {
-            Pen p = new Pen(Color.Black, 2);
+            this.radius = list[0];
+        }
+        public override void draw(CanvasO canvas)
+        {
+            Pen p = new Pen(colour, 2);
             SolidBrush b = new SolidBrush(colour);
+           
             Rectangle recta = new Rectangle(x - radius, y - radius, radius * 2, radius * 2);
-            graphic.DrawEllipse(p, recta);
-         //   if (fillo) {
-                graphic.FillEllipse(b, recta); 
-          //  }
+            canvas.gfx.DrawEllipse(p, recta);
+            if (canvas.fillo) {
+                canvas.gfx.FillEllipse(b, recta); 
+            }
         
         }
-        public override double calcArea()
-        {
-            return Math.PI * (radius ^ 2);
-        }
-        public override double calcPerim()
-        {
-            return (2 * Math.PI * radius);
-        }
-
-
 
     }
 }

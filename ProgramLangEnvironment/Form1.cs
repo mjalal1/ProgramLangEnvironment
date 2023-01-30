@@ -273,12 +273,12 @@ namespace ProgramLangEnvironment
 
         public void commandLine_KeyDown(object sender, KeyEventArgs e)
         {
-
+            Parser p = new Parser(this);
             if (e.KeyCode == Keys.Enter)
             {
                 try
                 {
-                    ParseCommand(commandLine.Text);
+                    p.ParseCommand(commandLine.Text);
                 }
                 catch (Exception ex)
                 {
