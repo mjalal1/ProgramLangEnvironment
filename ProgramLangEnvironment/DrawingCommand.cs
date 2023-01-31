@@ -11,7 +11,7 @@ namespace ProgramLangEnvironment
     {
        protected Color colour;
        protected int x,y;
-       protected int parameters;
+       public int parameters;
 
         public DrawingCommand()
         {
@@ -29,7 +29,7 @@ namespace ProgramLangEnvironment
         }
 
         public abstract void execute(CanvasO c);
-
+        // 
 
         public abstract void set(Color colour, params int[] list);
         public abstract void set(params int[] list);

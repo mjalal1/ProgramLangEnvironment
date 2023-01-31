@@ -17,13 +17,17 @@ namespace ProgramLangEnvironment
             {
                 return new Circle(); // create classes for other commands
             }
-            if (shapeType.Equals("rect"))
+           else if (shapeType.Equals("rect"))
             {
                 return new Rect(); // create classes for other commands
             }
+            else if (shapeType.Equals("triangle"))
+            {
+                return new Triangle(); // create classes for other commands
+            }
             else
             {
-                throw new ArgumentException("Error in factory: " + shapeType+" not valid");
+                throw new ApplicationException("Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
             }
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Collections;
 
 namespace ProgramLangEnvironment
 {
@@ -59,34 +60,14 @@ namespace ProgramLangEnvironment
                 }
 
                 ShapeFactory sf = new ShapeFactory();
-                if (command=="circle")
+                var c = sf.GetCmd(command);
+                    if ((Param.Count() != c.parameters) || (Param.Contains(0)))
                 {
-                    if ((Param.Count() != 1) || (Param[0] == 0))
-                    {
 
                         throw new ApplicationException("Invalid Parameters : Circle takes 1 parameter: radius");
-                    }
-                    Circle c = (Circle)sf.GetCmd(command);
-                    c.set(form.Canvas.Pen.Color, Param[0]);
-                    c.execute(form.Canvas);
-                }      
-                else if (command == "rect")
-                {
-                    if ((Param.Count() != 2) || (Param.Contains(0)))
-                    {
-
-                        throw new ApplicationException("Invalid Parameters : Rect takes 2 parameters: length and height");
-                    }
-                    Rect c = (Rect)sf.GetCmd(command);
-                    c.set(form.Canvas.Pen.Color, Param[0],Param[1]);
-                    c.execute(form.Canvas);
-
-                }
-
-                else // If this is reached, the command given was not any of the accepted commands
-                {
-                    throw new ApplicationException("Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
-
+                    }                  
+                    c.set(form.Canvas.Pen.Color, Param.ToArray() );
+                    c.execute(form.Canvas);               
                 }
             }
         }
@@ -98,6 +79,5 @@ namespace ProgramLangEnvironment
 
 
     }
-}
 
 

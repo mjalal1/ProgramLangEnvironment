@@ -11,7 +11,7 @@ namespace ProgramLangEnvironment
     {
         void set(Color colour, params int[] list);
         void execute(CanvasO c);
-  
+       
       //  void execute();
     }
 }

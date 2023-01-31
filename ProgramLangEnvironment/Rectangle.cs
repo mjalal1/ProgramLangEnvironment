@@ -11,10 +11,11 @@ namespace ProgramLangEnvironment
         int length,height;
 
         public Rect() : base()
-        { this.parameters = 1; }
+        { this.parameters = 2; }
 
         public Rect(Color colour, int length, int height) : base()
         {
+            this.colour = colour;
             this.length = length;
             this.height = height;
         }
