@@ -17,6 +17,10 @@ namespace ProgramLangEnvironment
             {
                 return new Circle(); // create classes for other commands
             }
+            if (shapeType.Equals("rect"))
+            {
+                return new Rect(); // create classes for other commands
+            }
             else
             {
                 throw new ArgumentException("Error in factory: " + shapeType+" not valid");

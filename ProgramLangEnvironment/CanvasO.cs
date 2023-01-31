@@ -10,7 +10,7 @@ namespace ProgramLangEnvironment
     public class CanvasO
     {
         public Graphics gfx;
-        Pen Pen;
+       public Pen Pen;
         Brush brush = Brushes.Black;
         public int posx;
         public int posy;

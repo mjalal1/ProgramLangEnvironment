@@ -28,7 +28,7 @@ namespace ProgramLangEnvironment
         {
             this.radius = list[0];
         }
-        public override void draw(CanvasO canvas)
+        public override void execute(CanvasO canvas)
         {
             Pen p = new Pen(colour, 2);
             SolidBrush b = new SolidBrush(colour);

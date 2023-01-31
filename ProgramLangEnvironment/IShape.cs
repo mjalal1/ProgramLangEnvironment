@@ -10,7 +10,7 @@ namespace ProgramLangEnvironment
     interface IShape
     {
         void set(Color colour, params int[] list);
-        void draw(CanvasO c);
+        void execute(CanvasO c);
   
       //  void execute();
     }

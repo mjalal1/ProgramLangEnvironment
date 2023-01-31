@@ -8,7 +8,7 @@ using System.Drawing;
 namespace ProgramLangEnvironment
 {
     class Parser 
-    {
+    {    // I want a ParseProgram for pw and a ParseLine for the line at hand
         Form1 form;
         public Parser(Form1 form)
         {
@@ -18,7 +18,7 @@ namespace ProgramLangEnvironment
       
         /// <summary>
         /// This function parses the string given to it, splits it into command and parameters, and decides which function to call.
-        /// Exceptions are mostly thrown here, should be refactored to a seperate class
+        /// Exceptions are mostly thrown here
         /// </summary>
         /// <param name="line"> The command and parameters passed by the user </param>
         public void ParseCommand(String line)
@@ -30,18 +30,14 @@ namespace ProgramLangEnvironment
 
         }
 
+
         private void ParseLine(string[] comLine)
         {
             for (int x = 0; x < comLine.Length; x++) // Iterate on every line of code stored
             {
-
-
-
                 string[] com = comLine[x].Split(' ');   //Split into command and parameters
                 string command = com[0]; //Assign command to a variable           
                 List<int> Param = new List<int>(); // Create list of integers to store parameters after conversion
-
-
 
                 if (com.Length > 1) // if there are parameters
                 {
@@ -59,18 +55,10 @@ namespace ProgramLangEnvironment
                         {
                             throw new ApplicationException("Invalid Parameters ");
                         }
-
-
                     }
-
-
-
                 }
 
                 ShapeFactory sf = new ShapeFactory();
-
-
-
                 if (command=="circle")
                 {
                     if ((Param.Count() != 1) || (Param[0] == 0))
@@ -79,23 +67,19 @@ namespace ProgramLangEnvironment
                         throw new ApplicationException("Invalid Parameters : Circle takes 1 parameter: radius");
                     }
                     Circle c = (Circle)sf.GetCmd(command);
-                    c.set(Color.Black, Param[0]);
-                    c.draw(form.Canvas);
-
-                }
-
-
-                
+                    c.set(form.Canvas.Pen.Color, Param[0]);
+                    c.execute(form.Canvas);
+                }      
                 else if (command == "rect")
                 {
-                    if ((Param.Count() != 2) || (Param[0] == 0))
+                    if ((Param.Count() != 2) || (Param.Contains(0)))
                     {
 
-                        throw new ApplicationException("Invalid Parameters : Circle takes 1 parameter: radius");
+                        throw new ApplicationException("Invalid Parameters : Rect takes 2 parameters: length and height");
                     }
-                    Circle c = (Circle)sf.GetCmd(command);
-                    c.set(Color.Black, Param[0]);
-                    c.draw(form.Canvas);
+                    Rect c = (Rect)sf.GetCmd(command);
+                    c.set(form.Canvas.Pen.Color, Param[0],Param[1]);
+                    c.execute(form.Canvas);
 
                 }
 

@@ -28,7 +28,7 @@ namespace ProgramLangEnvironment
             this.y = y;
         }
 
-        public abstract void draw(CanvasO c);
+        public abstract void execute(CanvasO c);
 
 
         public abstract void set(Color colour, params int[] list);
