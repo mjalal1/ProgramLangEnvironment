@@ -29,6 +29,10 @@ namespace ProgramLangEnvironment
             {
                 return new DrawTo();
             }
+            else if (shapeType.Equals("moveto"))
+            {
+                return new MoveTo();
+            }
             else
             {
                 throw new ApplicationException("[FACTORY]: Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
