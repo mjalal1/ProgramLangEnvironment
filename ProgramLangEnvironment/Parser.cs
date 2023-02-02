@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace ProgramLangEnvironment
 {
-    class Parser 
+    public class Parser 
     {    // I want a ParseProgram for pw and a ParseLine for the line at hand
         Form1 form;
         public Parser(Form1 form)

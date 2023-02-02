@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-    interface Command
+   interface Command
     {
       
         

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-  abstract class DrawingCommand : Command
+  public abstract class DrawingCommand : Command
     {
        protected Color colour;
        protected int x,y;

@@ -79,14 +79,14 @@ namespace PLEUnitTesting
         {
             Form1 forma = new Form1();
             var sf = new ShapeFactory();
-            Object o = (Object)sf.MakeCommand("invalid");
-            Assert.ThrowsException<ApplicationException>(() => sf.MakeCommand(o.ToString()));
+            Object o = (Object)sf.GetCmd("invalid");
+            Assert.ThrowsException<ApplicationException>(() => sf.GetCmd(o.ToString()));
         }
 
         public void TestParserClass()
         {
             Form1 forma = new Form1();
-            Parser p = new Parser;
+            Parser p = new Parser(forma);
             string a = "circle bogey";
             Assert.ThrowsException<ApplicationException>(() => p.ParseCommand(a));
         }
@@ -94,7 +94,7 @@ namespace PLEUnitTesting
         public void TestWhile()
         {
             Form1 forma = new Form1();
-            Parser p = new Parser;
+            Parser p = new Parser(forma);
             string a = "while x>10\ncircle x\nx=x+1\nendwhile";
             Assert.ThrowsException<ApplicationException>(() => p.ParseCommand(a));
         }

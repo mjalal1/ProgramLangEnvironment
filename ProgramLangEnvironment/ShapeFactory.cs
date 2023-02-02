@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-    class ShapeFactory
+  public  class ShapeFactory
     {
         public DrawingCommand GetCmd(string shapeType)
         {
