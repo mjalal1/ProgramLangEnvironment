@@ -25,6 +25,10 @@ namespace ProgramLangEnvironment
             {
                 return new Triangle(); 
             }
+            else if (shapeType.Equals("drawto"))
+            {
+                return new DrawTo();
+            }
             else
             {
                 throw new ApplicationException("[FACTORY]: Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
