@@ -19,15 +19,15 @@ namespace ProgramLangEnvironment
             }
            else if (shapeType.Equals("rect"))
             {
-                return new Rect(); // create classes for other commands
+                return new Rect(); 
             }
             else if (shapeType.Equals("triangle"))
             {
-                return new Triangle(); // create classes for other commands
+                return new Triangle(); 
             }
             else
             {
-                throw new ApplicationException("Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
+                throw new ApplicationException("[FACTORY]: Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
             }
         }
 

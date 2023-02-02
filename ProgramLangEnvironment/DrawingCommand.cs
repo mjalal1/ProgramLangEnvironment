@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-  abstract class DrawingCommand : IShape
+  abstract class DrawingCommand : Command
     {
        protected Color colour;
        protected int x,y;
-       public int parameters;
+        public int parameters;
+        protected CanvasO canvas;
 
         public DrawingCommand()
         {
@@ -21,20 +22,20 @@ namespace ProgramLangEnvironment
 
         }
 
-        public DrawingCommand(Color colour, int x, int y)
+        public DrawingCommand(CanvasO canvas, int x, int y)
         {
-            this.colour = colour;
+            this.canvas = canvas;
             this.x = x;
             this.y = y;
         }
 
-        public abstract void execute(CanvasO c);
+        public abstract void draw();
         // 
 
-        public abstract void set(Color colour, params int[] list);
+        public abstract void set(CanvasO canvas, params int[] list);
         public abstract void set(params int[] list);
-    
 
+        public abstract void execute();
 
     }
 }

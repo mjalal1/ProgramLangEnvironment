@@ -46,10 +46,10 @@ namespace ProgramLangEnvironment
 
                     foreach (string i in Params) // Iterate through each parameter in string form and convert to int
                     {
-                        int a; // Variable to hold integer output
+                        //int a; // Variable to hold integer output
                         try
                         {
-                            int.TryParse(i, out a);// TryParse the string as int - surround with try catch
+                            int.TryParse(i, out int a);// TryParse the string as int - surround with try catch
                             Param.Add(a);//Add int to list of parameters
                         }
                         catch (Exception ex)
@@ -64,10 +64,10 @@ namespace ProgramLangEnvironment
                     if ((Param.Count() != c.parameters) || (Param.Contains(0)))
                 {
 
-                        throw new ApplicationException("Invalid Parameters : Circle takes 1 parameter: radius");
+                        throw new ApplicationException("Invalid Parameters : "+c.ToString()+" takes "+c.parameters+" parameters");
                     }                  
-                    c.set(form.Canvas.Pen.Color, Param.ToArray() );
-                    c.execute(form.Canvas);               
+                    c.set(form.Canvas, Param.ToArray() );
+                    c.draw();               
                 }
             }
         }

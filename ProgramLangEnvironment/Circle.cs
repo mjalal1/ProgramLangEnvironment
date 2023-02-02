@@ -13,14 +13,19 @@ namespace ProgramLangEnvironment
         public Circle() : base()
         { this.parameters = 1; }
 
-        public Circle(Color colour, int x, int y, int radius) : base(colour,x,y)
+        public Circle(CanvasO canvas, int x, int y, int radius) : base(canvas,x,y)
         {
             this.radius = radius;
         }
 
-        public override void set(Color colour, params int[] list)
+        public override void execute()
         {
-            this.colour = colour; 
+            draw();
+        }
+
+        public override void set(CanvasO canvas, params int[] list)
+        {
+            this.canvas = canvas;
            this.radius = list[0];
         }
 
@@ -28,17 +33,18 @@ namespace ProgramLangEnvironment
         {
             this.radius = list[0];
         }
-        public override void execute(CanvasO canvas)
+        public override void draw()
         {
             Pen p = new Pen(colour, 2);
             SolidBrush b = new SolidBrush(colour);
-           
             Rectangle recta = new Rectangle(x - radius, y - radius, radius * 2, radius * 2);
             canvas.gfx.DrawEllipse(p, recta);
-            if (canvas.fillo) {
-                canvas.gfx.FillEllipse(b, recta); 
-            }
+            if (canvas.fillo) {canvas.gfx.FillEllipse(b, recta);}
         
+        }
+        public override string ToString()
+        {
+            return "Circle";
         }
 
     }

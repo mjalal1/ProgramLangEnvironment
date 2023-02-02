@@ -27,9 +27,9 @@ namespace ProgramLangEnvironment
             pnt[2].Y = y3;
         }
 
-        public override void set(Color colour, params int[] list)
+        public override void set(CanvasO canvas, params int[] list)
         {
-            this.colour = colour;
+            this.canvas = canvas;
             this.pnt[0].X = list[0];
             this.pnt[0].Y = list[1];
 
@@ -51,7 +51,7 @@ namespace ProgramLangEnvironment
            this. pnt[2].X = list[4];
            this. pnt[2].Y = list[5];
         }
-        public override void execute(CanvasO canvas)
+        public override void draw()
         {
             Pen p = new Pen(colour, 2);
             SolidBrush b = new SolidBrush(colour);
@@ -59,6 +59,15 @@ namespace ProgramLangEnvironment
             canvas.gfx.DrawPolygon(p, pnt);
             if (canvas.fillo) { canvas.gfx.FillPolygon(b, pnt); }
 
+        }
+        public override void execute()
+        {
+            draw();
+        }
+
+        public override string ToString()
+        {
+            return "Triangle";
         }
     }
 }

@@ -20,11 +20,20 @@ namespace ProgramLangEnvironment
             this.height = height;
         }
 
-        public override void set(Color colour, params int[] list)
+        public override void set(CanvasO canvas, params int[] list)
         {
-            this.colour = colour;
+            this.canvas = canvas;
             this.length = list[0];
             this.height = list[1];
+        }
+
+        public override string ToString()
+        {
+            return "Rectangle";
+        }
+        public override void execute()
+        {
+            draw();
         }
 
         public override void set(params int[] list)
@@ -32,7 +41,7 @@ namespace ProgramLangEnvironment
             this.length = list[0];
             this.height = list[1];
         }
-        public override void execute(CanvasO canvas)
+        public override void draw()
         {
             Pen p = new Pen(colour, 2);
             SolidBrush b = new SolidBrush(colour);
