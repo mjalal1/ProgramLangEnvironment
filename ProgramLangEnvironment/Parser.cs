@@ -67,7 +67,7 @@ namespace ProgramLangEnvironment
                         throw new ApplicationException("Invalid Parameters : "+c.ToString()+" takes "+c.parameters+" parameters");
                     }                  
                     c.set(form.Canvas, Param.ToArray() );
-                    c.draw();               
+                    c.execute();               
                 }
             }
         }

@@ -33,6 +33,10 @@ namespace ProgramLangEnvironment
             {
                 return new MoveTo();
             }
+            else if (shapeType.Equals("reset"))
+            {
+                return new Reset();
+            }
             else
             {
                 throw new ApplicationException("[FACTORY]: Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");
