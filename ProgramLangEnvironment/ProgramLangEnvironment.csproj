@@ -68,6 +68,7 @@
     <Compile Include="DrawingCommand.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="Reset.cs" />
+    <Compile Include="Save.cs" />
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="StoreCmd.cs" />
     <Compile Include="Triangle.cs" />
