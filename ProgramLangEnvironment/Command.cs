@@ -12,6 +12,7 @@ namespace ProgramLangEnvironment
    public abstract int parameters();
         public abstract void execute();
         public abstract string cmdType();
+      
       //  public abstract void set(params dynamic[] list);
     }
 }

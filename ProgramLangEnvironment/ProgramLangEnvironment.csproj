@@ -50,6 +50,7 @@
     <Compile Include="Circle.cs" />
     <Compile Include="Clear.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="ConditionalCmd.cs" />
     <Compile Include="Declarations.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="DrawTo.cs" />
@@ -61,6 +62,8 @@
     </Compile>
     <Compile Include="IShape.cs" />
     <Compile Include="Load.cs" />
+    <Compile Include="Loop.cs" />
+    <Compile Include="Method.cs" />
     <Compile Include="MoveTo.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
@@ -72,6 +75,8 @@
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="StoreCmd.cs" />
     <Compile Include="Triangle.cs" />
+    <Compile Include="Var.cs" />
+    <Compile Include="While.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

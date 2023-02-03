@@ -88,7 +88,7 @@ namespace PLEUnitTesting
             Form1 forma = new Form1();
             Parser p = new Parser(forma);
             string a = "circle bogey";
-            Assert.ThrowsException<ApplicationException>(() => p.ParseCommand(a));
+            Assert.ThrowsException<ApplicationException>(() => p.ParseProgram(a));
         }
 
         public void TestWhile()
@@ -96,7 +96,7 @@ namespace PLEUnitTesting
             Form1 forma = new Form1();
             Parser p = new Parser(forma);
             string a = "while x>10\ncircle x\nx=x+1\nendwhile";
-            Assert.ThrowsException<ApplicationException>(() => p.ParseCommand(a));
+            Assert.ThrowsException<ApplicationException>(() => p.ParseProgram(a));
         }
 
 

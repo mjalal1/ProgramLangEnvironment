@@ -278,7 +278,7 @@ namespace ProgramLangEnvironment
             {
                 try
                 {
-                    p.ParseCommand(commandLine.Text);
+                    p.ParseProgram(commandLine.Text);
                 }
                 catch (Exception ex)
                 {
