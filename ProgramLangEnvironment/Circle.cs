@@ -11,13 +11,20 @@ namespace ProgramLangEnvironment
         int radius;
       
         public Circle() : base()
-        { this.parameters = 1; }
+        {  }
 
         public Circle(CanvasO canvas, int x, int y, int radius) : base(canvas,x,y)
         {
             this.radius = radius;
+           
         }
 
+        public override int parameters()
+        {
+            return 1;
+        }
+
+       
         public override void execute()
         {
             draw();
@@ -25,7 +32,7 @@ namespace ProgramLangEnvironment
 
         public override void set(CanvasO canvas, params int[] list)
         {
-            this.canvas = canvas;
+            base.set(canvas,list);
            this.radius = list[0];
         }
 
@@ -37,7 +44,7 @@ namespace ProgramLangEnvironment
         {
             Pen p = new Pen(colour, 2);
             SolidBrush b = new SolidBrush(colour);
-            Rectangle recta = new Rectangle(x - radius, y - radius, radius * 2, radius * 2);
+            Rectangle recta = new Rectangle(canvas.posx - radius, canvas.posy - radius, radius * 2, radius * 2);
             canvas.gfx.DrawEllipse(p, recta);
             if (canvas.fillo) {canvas.gfx.FillEllipse(b, recta);}
         

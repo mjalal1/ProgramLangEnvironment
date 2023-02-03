@@ -13,8 +13,11 @@ namespace ProgramLangEnvironment
         Point[] pnt = new Point[3];
 
         public Triangle() : base()
-        { this.parameters = 6; }
-
+        { }
+        public override int parameters()
+        {
+            return 6;
+        }
         public Triangle(Color colour,int x1, int y1, int x2, int y2, int x3, int y3)
         {
             pnt[0].X = x1;
@@ -29,7 +32,7 @@ namespace ProgramLangEnvironment
 
         public override void set(CanvasO canvas, params int[] list)
         {
-            this.canvas = canvas;
+            base.set(canvas, list);
             this.pnt[0].X = list[0];
             this.pnt[0].Y = list[1];
 

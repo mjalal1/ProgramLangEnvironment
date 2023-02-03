@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-  public abstract class DrawingCommand : Command
+    public abstract class DrawingCommand : Command
     {
-       protected Color colour;
-       protected int x,y;
-        public int parameters;
+        protected Color colour;
+        protected int x, y;
+        
+
         protected CanvasO canvas;
 
         public DrawingCommand()
         {
-            this.colour = Color.Blue;
+
             this.x = 150;
             this.y = 100;
 
@@ -29,13 +30,25 @@ namespace ProgramLangEnvironment
             this.y = y;
         }
 
+
         public abstract void draw();
         // 
 
-        public abstract void set(CanvasO canvas, params int[] list);
-        public abstract void set(params int[] list);
+        public override string cmdType()
+        {
+            return "Draw";
+        }
+        public virtual void set(CanvasO canvas, params int[] list)
+        {
+            this.canvas = canvas;
+            this.colour = canvas.Pen.Color;
+        }
+        
 
-        public abstract void execute();
+        public abstract void set(params int[] list);
+        // 
+
+
 
     }
 }

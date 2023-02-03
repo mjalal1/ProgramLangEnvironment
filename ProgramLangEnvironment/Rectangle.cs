@@ -11,18 +11,11 @@ namespace ProgramLangEnvironment
         int length,height;
 
         public Rect() : base()
-        { this.parameters = 2; }
-
-        public Rect(Color colour, int length, int height) : base()
-        {
-            this.colour = colour;
-            this.length = length;
-            this.height = height;
-        }
+        { }
 
         public override void set(CanvasO canvas, params int[] list)
         {
-            this.canvas = canvas;
+            base.set(canvas, list);
             this.length = list[0];
             this.height = list[1];
         }
@@ -31,6 +24,11 @@ namespace ProgramLangEnvironment
         {
             return "Rectangle";
         }
+        public override int parameters()
+        {
+            return 2;
+        }
+
         public override void execute()
         {
             draw();

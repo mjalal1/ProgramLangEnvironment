@@ -7,21 +7,20 @@ using System.Drawing;
 
 namespace ProgramLangEnvironment
 {
-    class MoveTo : DrawingCommand
+    class Clear : DrawingCommand
     {
-        int x, y;
-        public MoveTo() : base()
-        {}
+       
+        public Clear() : base()
+        { }
 
         public override int parameters()
         {
-            return 2;
+            return 0;
         }
         public override void set(CanvasO canvas, params int[] list)
         {
-            base.set(canvas, list);
-            this.x = list[0];
-            this.y = list[1];
+            this.canvas = canvas;
+
         }
 
         public override void set(params int[] list)
@@ -33,17 +32,17 @@ namespace ProgramLangEnvironment
 
         public override void draw()
         {
-            canvas.posx = x;
-            canvas.posy = y;
+            canvas.gfx.Clear(Color.Transparent);
         }
 
         public override string ToString()
         {
-            return "MoveTo";
+            return "Clear";
         }
         public override void execute()
         {
             draw();
+
         }
     }
 }

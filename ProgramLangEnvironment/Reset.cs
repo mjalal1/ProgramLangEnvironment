@@ -11,12 +11,12 @@ namespace ProgramLangEnvironment
     {
         int x, y;
         public Reset() : base()
-        { this.parameters = 0; }
+        { }
 
         public override void set(CanvasO canvas, params int[] list)
         {
-            this.canvas = canvas;
-         
+            base.set(canvas, list);
+
         }
 
         public override void set(params int[] list)
@@ -31,7 +31,10 @@ namespace ProgramLangEnvironment
 
             throw new NotImplementedException();
         }
-
+        public override int parameters()
+        {
+            return 0;
+        }
         public override string ToString()
         {
             return "Reset";

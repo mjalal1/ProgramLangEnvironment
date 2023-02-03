@@ -130,7 +130,7 @@ namespace ProgramLangEnvironment
         #endregion
 
         private System.Windows.Forms.TextBox commandLine;
-        protected System.Windows.Forms.RichTextBox programWindow;
+        public System.Windows.Forms.RichTextBox programWindow;
         private System.Windows.Forms.PictureBox outputWindow;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

@@ -52,7 +52,7 @@ namespace ProgramLangEnvironment
                             int.TryParse(i, out int a);// TryParse the string as int - surround with try catch
                             Param.Add(a);//Add int to list of parameters
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             throw new ApplicationException("Invalid Parameters ");
                         }
@@ -60,14 +60,20 @@ namespace ProgramLangEnvironment
                 }
 
                 ShapeFactory sf = new ShapeFactory();
-                var c = sf.GetCmd(command);
-                    if ((Param.Count() != c.parameters) || (Param.Contains(0)))
+                dynamic c = sf.GetCmd(command);
+                    if ((Param.Count() != c.parameters()) || (Param.Contains(0))) // ! check for zero doesnt work for string paramets 
                 {
 
-                        throw new ApplicationException("Invalid Parameters : "+c.ToString()+" takes "+c.parameters+" parameters");
-                    }                  
-                    c.set(form.Canvas, Param.ToArray() );
-                    c.execute();               
+                        throw new ApplicationException("Invalid Parameters : "+c.ToString()+" takes "+c.parameters()+" parameter(s)");
+                    }
+                
+                if (c.cmdType()=="Draw")
+                { c.set(form.Canvas, Param.ToArray() ); }
+                else if (c.cmdType() == "Store")
+                    { c.set(form, com[1]); }
+
+                c.execute();            
+                
                 }
             }
         }

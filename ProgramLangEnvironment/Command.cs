@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProgramLangEnvironment
 {
-   interface Command
+  public  abstract class Command : ICommand
     {
-      
-        
 
-        void set(CanvasO c, params int[] list); //set should take the canvas and store it so draw can use it 
-
-
-        void execute();
+   public abstract int parameters();
+        public abstract void execute();
+        public abstract string cmdType();
+      //  public abstract void set(params dynamic[] list);
     }
 }

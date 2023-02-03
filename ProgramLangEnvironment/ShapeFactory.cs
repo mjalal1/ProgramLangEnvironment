@@ -8,7 +8,7 @@ namespace ProgramLangEnvironment
 {
   public  class ShapeFactory
     {
-        public DrawingCommand GetCmd(string shapeType)
+        public ICommand GetCmd(string shapeType)
         {
             shapeType = shapeType.ToLower().Trim();
 
@@ -36,6 +36,14 @@ namespace ProgramLangEnvironment
             else if (shapeType.Equals("reset"))
             {
                 return new Reset();
+            }
+            else if (shapeType.Equals("clear"))
+            {
+                return new Clear();
+            }
+            else if (shapeType.Equals("load"))
+            {
+                return new Load();
             }
             else
             {
