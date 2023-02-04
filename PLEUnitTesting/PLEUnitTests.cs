@@ -70,7 +70,7 @@ namespace PLEUnitTesting
         public void TestParseCommand()
         {
             Form1 forma = new Form1();
-            string a = "Giggs better pop up in ur thoughts as an artist\nJheeze Holl3rin at man";
+            string a = "Giggs better poist\n Holl3rin at man";
             Assert.ThrowsException<ApplicationException>(() => forma.ParseCommand(a));
         }
 

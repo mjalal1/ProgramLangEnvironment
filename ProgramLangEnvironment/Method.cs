@@ -8,18 +8,25 @@ namespace ProgramLangEnvironment
 {
     class Method : Declarations
     {
-        public int methCount = 0;
-        public override bool checkFor(Parser p,string param)
+         int? found=null;
+        string name;
+        int location;
+        public override int? checkFor(Parser p,string param)
         {
-            bool found = false;
+            this.p = p;
+         
             if (p.methName.Contains(param))
-            { found = true; }
+            { found = p.methName.FindIndex(a => a.Contains(param)); }
             return found;
         }
 
-        public override void declare(Parser p,string name)
+        public override void declare() // call method. takes same params 
         {
-            throw new NotImplementedException();
+           if (checkFor(p,name)>=0)
+            {
+                p.svprogramCounter = p.programCounter+1; //// needs attention, parameters wise
+                p.programCounter = p.methLoc[(int)found];
+            }
         }
 
         public override void execute()
@@ -31,15 +38,23 @@ namespace ProgramLangEnvironment
         {
             return 1;
         }
-
-        public override void set(Parser p,string name, int value)
+       
+       
+        public  void set(Parser p,string name, int value)
         {
             this.p = p;
-            if (checkFor(p,name))
+            this.name = name;
+            this.location = value;
+            if (checkFor(p,name)>=0)
             {
-                p.methName[methCount] = name;
-                p.methLoc[methCount++] = value;
+                p.methName.Add(name);
+                p.methLoc.Add(value);
             }
+        }
+
+        public override void set(Parser p, string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -65,6 +65,14 @@ namespace ProgramLangEnvironment
             {
                 return new Loop();
             }
+            else if (shapeType.Equals("run"))
+            {
+                return new Run();
+            }
+            else if (shapeType.Equals("if"))
+            {
+                return new ConditionalCmd();
+            }
             else
             {
                 throw new ApplicationException("[FACTORY]: Command not recognised\nValid Commands: rect,triangle,circle,drawTo,moveTo,reset,clear,pen,fill");

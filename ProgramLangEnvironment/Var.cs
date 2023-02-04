@@ -8,26 +8,32 @@ namespace ProgramLangEnvironment
 {
     class Var : Declarations
     {
+        int? found = null;
         public int varCount = 0;
-        public override void declare(string name)
+        string name;
+        int value;
+        public override void declare()
         {
-            if (!checkFor(name))
+
+            if (checkFor(p, name).Equals(null))
             {
-                this.varName[varCount] = name;
-                this.varValue[varCount++] = 0;
+                p.varName.Add(name);
+                p.varValue.Add(0);
             }
         }
 
         public override void execute()
         {
             //decide if it's set or declare
-            throw new NotImplementedException();
+            declare();
         }
-        public override bool checkFor(string param)
+        public override int? checkFor(Parser p, string param)
         {
-            bool found = false;
-            if (varName.Contains(param))
-            { found = true; }
+            this.p = p;
+
+            if (p.varName.Contains(param))
+            { found = p.varName.FindIndex(a => a.Contains(param)); }
+            if (found == -1) { found = null; return found; }
             return found;
         }
 
@@ -35,14 +41,21 @@ namespace ProgramLangEnvironment
         {
             return 1;
         }
-
-        public override void set(string name,int value)
+        public void setVal()
         {
-            if (checkFor(name))
+            if (checkFor(p, name) >= 0)
             {
-                this.varName[varCount] = name;
-                this.varValue[varCount++] = value;
+                p.varName.Add(name);
+                p.varValue.Add(value);
             }
+        }
+
+        public override void set(Parser p, string name)
+        {
+            this.p = p;
+            this.name = name;
+           
+
         }
     }
 }
