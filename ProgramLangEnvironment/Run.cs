@@ -33,7 +33,7 @@ namespace ProgramLangEnvironment
             return 0;
         }
 
-        public override void set(Parser p, string name)
+        public override void set(Form1 p, string name)
         {  
             throw new NotImplementedException();
         }
@@ -43,7 +43,7 @@ namespace ProgramLangEnvironment
             throw new NotImplementedException();
         }
 
-        public override int? checkFor(Parser p, string param)
+        public override int? checkFor(Form1 p, string param)
         {
             throw new NotImplementedException();
         }

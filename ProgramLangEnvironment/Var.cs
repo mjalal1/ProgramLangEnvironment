@@ -15,11 +15,12 @@ namespace ProgramLangEnvironment
         public override void declare()
         {
 
-            if (checkFor(p, name).Equals(null))
+            if (checkFor(form, name).Equals(null))
             {
-                p.varName.Add(name);
-                p.varValue.Add(0);
+                form.varName.Add(name);
+                form.varValue.Add(0);
             }
+           // ProgramLangEnvironment.Parser form = form;
         }
 
         public override void execute()
@@ -27,12 +28,12 @@ namespace ProgramLangEnvironment
             //decide if it's set or declare
             declare();
         }
-        public override int? checkFor(Parser p, string param)
+        public override int? checkFor(Form1 form, string param)
         {
-            this.p = p;
+           
 
-            if (p.varName.Contains(param))
-            { found = p.varName.FindIndex(a => a.Contains(param)); }
+            if (form.varName.Contains(param))
+            { found = form.varName.FindIndex(a => a.Contains(param)); }
             if (found == -1) { found = null; return found; }
             return found;
         }
@@ -41,21 +42,20 @@ namespace ProgramLangEnvironment
         {
             return 1;
         }
-        public void setVal()
+        public void setVal(string name, int value)
         {
-            if (checkFor(p, name) >= 0)
+            int? a = checkFor(form, name);
+            if (a>= 0)
             {
-                p.varName.Add(name);
-                p.varValue.Add(value);
+                this.value = value;
+                form.varValue[(int)a]=(value);
             }
         }
 
-        public override void set(Parser p, string name)
+        public override void set(Form1 form, string name)
         {
-            this.p = p;
+            this.form = form;
             this.name = name;
-           
-
         }
     }
 }

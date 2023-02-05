@@ -11,21 +11,21 @@ namespace ProgramLangEnvironment
          int? found=null;
         string name;
         int location;
-        public override int? checkFor(Parser p,string param)
+        public override int? checkFor(Form1 form,string param)
         {
-            this.p = p;
+            this.form = form;
          
-            if (p.methName.Contains(param))
-            { found = p.methName.FindIndex(a => a.Contains(param)); }
+            if (form.methName.Contains(param))
+            { found = form.methName.FindIndex(a => a.Contains(param)); }
             return found;
         }
 
         public override void declare() // call method. takes same params 
         {
-           if (checkFor(p,name)>=0)
+           if (checkFor(form,name)>=0)
             {
-                p.svprogramCounter = p.programCounter+1; //// needs attention, parameters wise
-                p.programCounter = p.methLoc[(int)found];
+               // form.svprogramCounter = form.programCounter+1; //// needs attention, parameters wise
+              //  form.programCounter = form.methLoc[(int)found];
             }
         }
 
@@ -40,19 +40,19 @@ namespace ProgramLangEnvironment
         }
        
        
-        public  void set(Parser p,string name, int value)
+        public  void set(Form1 form,string name, int value)
         {
-            this.p = p;
+            this.form = form;
             this.name = name;
             this.location = value;
-            if (checkFor(p,name)>=0)
+            if (checkFor(form,name)>=0)
             {
-                p.methName.Add(name);
-                p.methLoc.Add(value);
+                form.methName.Add(name);
+                form.methLoc.Add(value);
             }
         }
 
-        public override void set(Parser p, string name)
+        public override void set(Form1 form, string name)
         {
             throw new NotImplementedException();
         }

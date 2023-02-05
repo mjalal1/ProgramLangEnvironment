@@ -8,11 +8,11 @@ namespace ProgramLangEnvironment
 {
     abstract class Declarations : Command
     {
+        protected Form1 form;
         protected Parser p;
-     
-        public abstract void set(Parser p,string name);
+        public abstract void set(Form1 f,string name);
         public abstract void declare();
-        public abstract int? checkFor(Parser p,string param);
+        public abstract int? checkFor(Form1 f,string param);
         public override string cmdType()
         {
             return "Declare";

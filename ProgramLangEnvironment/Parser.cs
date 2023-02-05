@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Collections;
 using System.Diagnostics;
+using System.Data;
 
 namespace ProgramLangEnvironment
 {
@@ -16,10 +17,8 @@ namespace ProgramLangEnvironment
         public int svprogramCounter;
         public int methodCount;
         public int varCount;
-        public List<string> varName = new List<string>();
-        public List<int> varValue = new List<int>();
-        public List<string> methName = new List<string>();
-        public List<int> methLoc = new List<int>();
+  
+  
         public Parser(Form1 form)
         {
             this.form = form;
@@ -36,16 +35,20 @@ namespace ProgramLangEnvironment
 
             line = line.Trim().ToLower();  //trim excess and bring everything into same case 
             string[] comLine = line.Split('\n'); //Splits on new line, splits program into different lines
-            ParseLine(comLine[programCounter]);
+            for (int i = 0; i < comLine.Count(); i++)
+            {
+  ParseLine(comLine[programCounter]);
             programCounter++;
+            }
+   
+          
 
         }
 
 
         private void ParseLine(string comLine)
         {
-            for (int i = 0; i <= comLine.Length; i++)
-            {
+           
 
 
                 string[] com = comLine.Split(' ');   //Split into command and parameters
@@ -58,8 +61,12 @@ namespace ProgramLangEnvironment
 
                     foreach (string x in Params) // Iterate through each parameter in string form and convert to int
                     {
-                        //int a; // Variable to hold integer output
-                        try
+
+                    if (form.varName.Contains(x))
+                    { int found = form.varName.FindIndex(a => a.Contains(x));
+                        x = form.varValue[found].ToString(); }
+                    //int a; // Variable to hold integer output
+                    try
                         {
                             int.TryParse(x, out int a);// TryParse the string as int - surround with try catch
                             Param.Add(a);//Add int to list of parameters
@@ -74,15 +81,23 @@ namespace ProgramLangEnvironment
 
                 if (command.Equals("run"))
                 {
-                    ParseProgram(form.programWindow.Text);
-                    continue;// To run pW code, parseCommand is called recursively on the pw.Text
+                    ParseProgram(form.programWindow.Text);// To run pW code, parseCommand is called recursively on the pw.Text
+                    return;
                 }
                 if (com[1].Equals("="))
                 {
-                    ShapeFactory sf2 = new ShapeFactory();  // move to inside for loop ~39, if cmdType=draw do int param, if =declare nest if com[1] is = then set execute, if com[1]
+                   
+
+                    DataTable dt = new DataTable();
+                    int v = (int)dt.Compute(com[2], "");
+
+                    ShapeFactory sf2 = new ShapeFactory(); 
                     dynamic c2 = sf2.GetCmd(com[1]);
-                    
-                    continue;// To run pW code, parseCommand is called recursively on the pw.Text
+                    c2.set(this.form, command);
+                    c2.setVal(command, v);
+                    return;
+                
+
                 }
 
                 ShapeFactory sf = new ShapeFactory();  // move to inside for loop ~39, if cmdType=draw do int param, if =declare nest if com[1] is = then set execute, if com[1]
@@ -105,7 +120,7 @@ namespace ProgramLangEnvironment
                 }
                 else if (c.cmdType() == "Store")
                 {
-                    if ((Param.Count() != c.parameters())) // ! check for zero doesnt work for string paramets 
+                    if ((Param.Count() != c.parameters())) 
                     {
                         throw new ApplicationException("Invalid Parameters : " + c.ToString() + " takes " + c.parameters() + " parameter(s)");
                     }
@@ -114,7 +129,7 @@ namespace ProgramLangEnvironment
                 }
                 else if (c.cmdType() == "Conditional")
                 {
-                    if ((Param.Count() != c.parameters())) // ! check for zero doesnt work for string paramets 
+                    if ((Param.Count() != c.parameters())) 
                     {
                         throw new ApplicationException("Invalid Parameters : " + c.ToString() + " takes " + c.parameters() + " parameter(s)");
                     }
@@ -122,15 +137,15 @@ namespace ProgramLangEnvironment
                 }
                 else if (c.cmdType() == "Declare")
                 {
-                    if ((Param.Count() != c.parameters())) // ! check for zero doesnt work for string paramets 
+                    if ((Param.Count() != c.parameters())) 
                     {
                         throw new ApplicationException("Invalid Parameters : " + c.ToString() + " takes " + c.parameters() + " parameter(s)");
                     }
-                    if (com.Length > 1)
+                    if (com.Length > 2)
                     {
                         if (com[1] == "=")
                         {
-                            c.set(this, command, com[2]);
+                            c.set(this.form, command, com[2]);
                             c.execute();
                         }
                     }
@@ -148,9 +163,9 @@ namespace ProgramLangEnvironment
                     }
                     else if (command == "var")
                     {
-                        c.set(this, com[1]);
-                       
-                        c.execute();
+                        c.set(this.form, com[1]);
+                    c.declare();
+                  //      c.execute();
                     }
                     else if (command == "run")
                     {
@@ -159,7 +174,7 @@ namespace ProgramLangEnvironment
                     }
 
 
-                }
+                 // end of for loop - loops to next line
             }
             //     c.execute();
 
